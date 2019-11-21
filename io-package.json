@@ -1,97 +1,75 @@
 {
-    "common": {
-        "name": "iobroker.elero",
-        "version": "0.0.2",
-        "title": "Elero USB-Stick Adapter",
-        "news": {
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版"
-            }
-        },
-        "title": "Elero-Adapter (JavaScript)",
-        "titleLang": {
-            "en": "Elero-Adapter (JavaScript)",
-            "de": "Elero-Adapter (JavaScript)",
-            "ru": "Elero-Adapter (JavaScript)",
-            "pt": "Elero-Adapter (JavaScript)",
-            "nl": "Elero-Adapter (JavaScript)",
-            "fr": "Elero-Adapter (JavaScript)",
-            "it": "Elero-Adapter (JavaScript)",
-            "es": "Elero-Adapter (JavaScript)",
-            "pl": "Elero-Adapter (JavaScript)",
-            "zh-cn": "Elero-Adapter（JavaScript）"
-        },
-        "desc": {
-            "en": "Template for adapter development",
-            "de": "Vorlage für die Adapterentwicklung",
-            "ru": "Шаблон для разработки адаптера",
-            "pt": "Modelo para desenvolvimento de adaptadores",
-            "nl": "Sjabloon voor adapterontwikkeling",
-            "fr": "Modèle pour le développement de l'adaptateur",
-            "it": "Modello per lo sviluppo dell'adattatore",
-            "es": "Plantilla para desarrollo de adaptadores",
-            "pl": "Szablon do opracowania adaptera",
-            "zh-cn": "适配器开发的模板"
-        },
-        "authors": [
-            "seb2010 <xxx@xxx.com>"
-        ],
-        "keywords": [
-            "ioBroker",
-            "Elero",
-            "Smart Home",
-            "home automation"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "elero.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/seb2010/ioBroker.elero/master/admin/elero.png",
-        "readme": "https://github.com/seb2010/ioBroker.elero/blob/master/README.md",
-        "loglevel": "info",
-        "mode": "daemon",
-        "type": "general",
-        "compact": true,
-        "materialize": true,
-        "materializeTab": true,
-        "adminTab": {
-            "singleton": true,
-            "name": {
-                "en": "Elero-Adapter (JavaScript)",
-                "de": "Elero-Adapter (JavaScript)",
-                "ru": "Elero-Adapter (JavaScript)",
-                "pt": "Elero-Adapter (JavaScript)",
-                "nl": "Elero-Adapter (JavaScript)",
-                "fr": "Elero-Adapter (JavaScript)",
-                "it": "Elero-Adapter (JavaScript)",
-                "es": "Elero-Adapter (JavaScript)",
-                "pl": "Elero-Adapter (JavaScript)",
-                "zh-cn": "Elero-Adapter（JavaScript）"
-            },
-            "link": "",
-            "fa-icon": "info"
-        },
-        "supportCustoms": false,
-        "dependencies": [
-            {
-                "js-controller": ">=1.4.2"
-            }
-        ]
-    },
-    "native": {
-        "option1": true,
-        "option2": "42"
-    },
-    "objects": [],
-    "instanceObjects": []
+	"common": {
+		"name": "elero",
+		"version": "0.0.2",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"zh-cn": "首次出版"
+			}
+		},
+		"title": "elero",
+		"titleLang": {
+			"en": "elero",
+			"de": "elero",
+			"ru": "elero",
+			"pt": "elero",
+			"nl": "elero",
+			"fr": "Elero",
+			"it": "elero",
+			"es": "elero",
+			"pl": "elero",
+			"zh-cn": "埃莱罗"
+		},
+		"desc": {
+			"en": "Adapter for elero USB-Stick",
+			"de": "Adapter für elero USB-Stick",
+			"ru": "Адаптер для elero USB-Stick",
+			"pt": "Adaptador para elero USB-Stick",
+			"nl": "Adapter voor elero USB-stick",
+			"fr": "Adaptateur pour clé USB elero",
+			"it": "Adattatore per elero USB-Stick",
+			"es": "Adaptador para elero USB-Stick",
+			"pl": "Adapter do pamięci USB elero",
+			"zh-cn": "用于Elero USB-Stick的适配器"
+		},
+		"authors": [
+			"seb2010 <seb2010@mailbox.org>"
+		],
+		"keywords": [
+			"iobroker",
+			"elero"
+		],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"main": "main.js",
+		"icon": "elero.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/seb2010/ioBroker.elero/master/admin/elero.png",
+		"readme": "https://github.com/seb2010/ioBroker.elero/blob/master/README.md",
+		"loglevel": "info",
+		"mode": "daemon",
+		"type": "hardware",
+		"compact": true,
+		"materialize": true,
+		"dependencies": [
+			{
+				"js-controller": ">=1.4.2"
+			}
+		]
+	},
+	"native": {
+		"option1": true,
+		"option2": "42"
+	},
+	"objects": [],
+	"instanceObjects": []
 }

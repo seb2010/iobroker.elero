@@ -20,7 +20,7 @@ let ETran;
 let Channels;
 var Devices = {};
 
-class EleroUSB extends utils.Adapter {
+class Elero extends utils.Adapter {
 
     /**
      * @param {Partial<ioBroker.AdapterOptions>} [options={}]
@@ -217,8 +217,8 @@ if (module.parent) {
      * @param {Partial<ioBroker.AdapterOptions>} [options={}]
      */
     var options = options || {};
-    module.exports = (options) => new EleroUSB(options);
+    module.exports = (options) => new Elero(options);
 } else {
     // otherwise start the instance directly
-    new EleroUSB();
+    new Elero();
 }
