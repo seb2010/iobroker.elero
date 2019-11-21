@@ -27,7 +27,7 @@ class EleroUSB extends utils.Adapter {
      */
     constructor(options) {
         super({
-            name: 'EleroSUB',
+            name: 'iobroker.elero',
             systemConfig:  true            // load ioBroker configuration into systemConfig
         });
         this.on('ready', this.onReady.bind(this));
