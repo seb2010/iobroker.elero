@@ -1,7 +1,7 @@
 {
     "common": {
-        "name": "EleroUSB",
-        "version": "0.0.1",
+        "name": "iobroker.elero",
+        "version": "0.0.2",
         "title": "Elero USB-Stick Adapter",
         "news": {
             "0.0.1": {
