@@ -11,15 +11,12 @@ const adapterName = require('./io-package.json').common.name;
 
 // Load your modules here, e.g.:
 // const fs = require("fs");
-const EleroLib = require(__dirname + '/lib/elero-io.js');
-const CoverLib = require(__dirname + '/lib/cover.js');
-const _NODES = require(__dirname + '/_NODES.js').STATES;
-const _MAPPING = require(__dirname + '/_NODES.js').MAPPING;
-const _SUBSCRIPTIONS = require(__dirname + '/_NODES.js').SUBSCRIPTIONS;
+///const EleroLib = require(__dirname + '/lib/elero-io.js');
+///const CoverLib = require(__dirname + '/lib/cover.js');
 
 let adapter;
 let ETrans;
-let Etran;
+let ETran;
 let Channels;
 var Devices = {};
 
@@ -50,51 +47,52 @@ class EleroUSB extends utils.Adapter {
         // this.config:
         this.log.info('config option1: ' + this.config.option1);
         this.log.info('config option2: ' + this.config.option2);
-        
-        this.log.debug('Creating Transmitters Class");
-        ETrans = new EleroTransmitters(this.config);
-        ETrans.discover();
-        ETran = ETrans.get_first_transmitter();
-        if(!Etran.get_transmitter_state()){
-            this.log.warn("No usable Transmitter found in Transmitters-list!");
-            break;
-        }else{
-            //Transmitter active and channels learned
-            //- list Channels
-            Channels = ETran.get_learned_channels();
-            Channels.foreach( function(ch) {
-                //set channel-object
-                /*
-                setObject(ch.toString, {
-                      common: {
-                            name: ch.toString();
-                      },
-                      type: 'channel'
-                });
-                */
+
+        //this.log.debug("Creating Transmitters Class");
+        //ETrans = new ETrans(this.config);
+        //ETrans.discover();
+        //ETran = ETrans.get_first_transmitter();
+        //if (!ETran.get_transmitter_state()){
+        //    this.log.warn("No usable Transmitter found in Transmitters-list!");
+        //    break;
+        //}else{
+        //    //Transmitter active and channels learned
+        //    //- list Channels
+        //    Channels = ETran.get_learned_channels();
+        //    Channels.foreach( function(ch) {
+        //        //set channel-object
+        //        /*
+        //        setObject(ch.toString, {
+        //              common: {
+        //                    name: ch.toString();
+        //              },
+        //              type: 'channel'
+        //        });
+        //        */
                 
-                //register Covvers
-                Devices[ch] = new CoverLib(ETran,'',ch,{'up','down','stop','set_position','open_tilt','close_tilt','stop_tilt','set_tilt_position'});
-                Devices[ch].update();
-                //set Device tree
-                setState(ch.toString,'available', Devices[ch].available());
-                setState(ch.toString,'name', Devices[ch].name());
-                setState(ch.toString,'device_class', Devices[ch].device_class());
-                setState(ch.toString,'supported_features', Devices[ch].supported_features());
-                setState(ch.toString,'is_opening', Devices[ch].current_cover_position());
-                setState(ch.toString,'is_closing', Devices[ch].current_cover_position());
-                setState(ch.toString,'is_closed', Devices[ch].current_cover_position());
-                setState(ch.toString,'current_cover_position', Devices[ch].current_cover_position());
-                setState(ch.toString,'position', Devices[ch].is_closing());
-                setState(ch.toString,'tilt_position', Devices[ch].is_closing());
-                setState(ch.toString,'state', Devices[ch].is_closing());
-                setState(ch.toString,'_command', '');
-            });
+        //        //register Covvers
+        //        Devices[ch] = new CoverLib(ETran,'',ch,{'up','down','stop','set_position','open_tilt','close_tilt','stop_tilt','set_tilt_position'});
+        //        Devices[ch].update();
+        //        //set Device tree
+        //        setState(ch.toString,'available', Devices[ch].available());
+        //        setState(ch.toString,'name', Devices[ch].name());
+        //        setState(ch.toString,'device_class', Devices[ch].device_class());
+        //        setState(ch.toString,'supported_features', Devices[ch].supported_features());
+        //        setState(ch.toString,'is_opening', Devices[ch].current_cover_position());
+        //        setState(ch.toString,'is_closing', Devices[ch].current_cover_position());
+        //        setState(ch.toString,'is_closed', Devices[ch].current_cover_position());
+        //        setState(ch.toString,'current_cover_position', Devices[ch].current_cover_position());
+        //        setState(ch.toString,'position', Devices[ch].is_closing());
+        //        setState(ch.toString,'tilt_position', Devices[ch].is_closing());
+        //        setState(ch.toString,'state', Devices[ch].is_closing());
+        //        setState(ch.toString,'_command', '');
+        //    });
             
-            //- register to Covers
-            //#todo: irgendwie muss dann da alles unter einen channel. 
-            //-connect Covers to states
-        }
+        //    //- register to Covers
+        //    //#todo: irgendwie muss dann da alles unter einen channel. 
+        //    //-connect Covers to states
+        //}
+        
 
         // in this template all states changes inside the adapters namespace are subscribed
         this.subscribeStates('*');
@@ -160,7 +158,7 @@ class EleroUSB extends utils.Adapter {
             // The state was changed
             this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
             
-            if(state.length == 0){break}
+            if(state.toString().length == 0){break}
             
             var statearray = id.split(".");
             var statename = statearray[statearray.length-1];
@@ -218,7 +216,7 @@ if (module.parent) {
     /**
      * @param {Partial<ioBroker.AdapterOptions>} [options={}]
      */
-    options = options || {};
+    var options = options || {};
     module.exports = (options) => new EleroUSB(options);
 } else {
     // otherwise start the instance directly

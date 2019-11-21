@@ -1,38 +1,24 @@
 {
-  "_from": "https://github.com/seb2010/iobroker.elero/tarball/master",
-  "_id": "iobroker.elero@0.0.1",
-  "_inBundle": false,
-  "_integrity": "sha512-BsDAq41NI2+7k9rZsmMgBJZuVMTQZs22jIMuU+CAOhtJH+eNxiER72Uh8O70BqtdU146IbKrT+pXmWz7zafVhg==",
-  "_location": "/iobroker.elero",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "remote",
-    "raw": "https://github.com/seb2010/iobroker.elero/tarball/master",
-    "rawSpec": "https://github.com/seb2010/iobroker.elero/tarball/master",
-    "saveSpec": "https://github.com/seb2010/iobroker.elero/tarball/master",
-    "fetchSpec": "https://github.com/seb2010/iobroker.elero/tarball/master"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://github.com/seb2010/iobroker.elero/tarball/master",
-  "_shasum": "d9c6ad59381e85ff4d2b9272cf01a2c5771b510b",
-  "_spec": "https://github.com/seb2010/iobroker.elero/tarball/master",
-  "_where": "/",
+  "name": "iobroker.elero",
+  "version": "0.0.1",
+  "description": "Portiertes Elero-Skript von Home-Assistant",
   "author": {
     "name": "seb2010",
     "email": "xxx@xxx.com"
   },
-  "bugs": {
-    "url": "https://github.com/seb2010/ioBroker.elero/issues"
+  "homepage": "https://github.com/seb2010/ioBroker.elero",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "elero"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seb2010/ioBroker.elero"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "@iobroker/adapter-core": "^1.0.3"
   },
-  "deprecated": false,
-  "description": "Portiertes Elero-Skript von Home-Assistant",
   "devDependencies": {
     "@iobroker/testing": "^1.2.6",
     "@types/chai": "^4.2.3",
@@ -53,25 +39,17 @@
     "sinon": "^7.5.0",
     "sinon-chai": "^3.3.0"
   },
-  "homepage": "https://github.com/seb2010/ioBroker.elero",
-  "keywords": [
-    "ioBroker",
-    "elero"
-  ],
-  "license": "MIT",
   "main": "main.js",
-  "name": "iobroker.elero",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/seb2010/ioBroker.elero.git"
-  },
   "scripts": {
-    "lint": "eslint",
-    "test": "npm run test:js && npm run test:package",
-    "test:integration": "mocha test/integration --exit",
     "test:js": "mocha --opts test/mocha.custom.opts",
     "test:package": "mocha test/package --exit",
-    "test:unit": "mocha test/unit --exit"
+    "test:unit": "mocha test/unit --exit",
+    "test:integration": "mocha test/integration --exit",
+    "test": "npm run test:js && npm run test:package",
+    "lint": "eslint"
   },
-  "version": "0.0.1"
+  "bugs": {
+    "url": "https://github.com/seb2010/ioBroker.elero/issues"
+  },
+  "readmeFilename": "README.md"
 }
