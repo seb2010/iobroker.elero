@@ -54,9 +54,9 @@
         "license": "MIT",
         "platform": "Javascript/Node.js",
         "main": "main.js",
-        "icon": "template.png",
+        "icon": "elero.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/seb2010/ioBroker.elero/master/admin/template.png",
+        "extIcon": "https://raw.githubusercontent.com/seb2010/ioBroker.elero/master/admin/elero.png",
         "readme": "https://github.com/seb2010/ioBroker.elero/blob/master/README.md",
         "loglevel": "info",
         "mode": "daemon",
@@ -65,7 +65,7 @@
         "materialize": true,
         "materializeTab": true,
         "adminTab": {
-            "singleton": false,
+            "singleton": true,
             "name": {
                 "en": "Elero-Adapter (JavaScript)",
                 "de": "Elero-Adapter (JavaScript)",
