@@ -1,6 +1,6 @@
 {
   "name": "iobroker.elero",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Portiertes Elero-Skript von Home-Assistant",
   "author": {
     "name": "seb2010",

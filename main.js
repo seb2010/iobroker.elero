@@ -28,7 +28,7 @@ class EleroUSB extends utils.Adapter {
     constructor(options) {
         super({
             ...options, 
-            name: 'elero'
+            name: adapterName
         });
         this.on('ready', this.onReady.bind(this));
         this.on('objectChange', this.onObjectChange.bind(this));
