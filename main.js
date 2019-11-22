@@ -49,51 +49,55 @@ class Elero extends utils.Adapter {
         this.log.info('config option1: ' + this.config.option1);
         this.log.info('config option2: ' + this.config.option2);
 
-        //this.log.debug("Creating Transmitters Class");
-        //ETrans = new ETrans(this.config);
-        //ETrans.discover();
-        //ETran = ETrans.get_first_transmitter();
-        //if (!ETran.get_transmitter_state()){
+        
+        this.log.info("Creating Transmitters Class");
+
+        this.ETrans = new ETrans(this.config);
+        this.ETrans.discover();
+        //this.ETran = this.ETrans.get_first_transmitter();
+        //if (!this.ETran.get_transmitter_state()){
         //    this.log.warn("No usable Transmitter found in Transmitters-list!");
         //    break;
         //}else{
         //    //Transmitter active and channels learned
         //    //- list Channels
-        //    Channels = ETran.get_learned_channels();
-        //    Channels.foreach( function(ch) {
+        //    this.Channels = this.ETran.get_learned_channels();
+        //    this.Channels.foreach( function(ch) {
+
         //        //set channel-object
-        //        /*
-        //        setObject(ch.toString, {
+        //        this.setObject(ch.toString, {
         //              common: {
-        //                    name: ch.toString();
+        //                    name: ch.toString()
         //              },
         //              type: 'channel'
         //        });
-        //        */
                 
         //        //register Covvers
-        //        Devices[ch] = new CoverLib(ETran,'',ch,{'up','down','stop','set_position','open_tilt','close_tilt','stop_tilt','set_tilt_position'});
-        //        Devices[ch].update();
+        //        this.Devices[ch] = new CoverLib(this.ETran,'',ch,['up','down','stop','set_position','open_tilt','close_tilt','stop_tilt','set_tilt_position']);
+        //        this.Devices[ch].update();
         //        //set Device tree
-        //        setState(ch.toString,'available', Devices[ch].available());
-        //        setState(ch.toString,'name', Devices[ch].name());
-        //        setState(ch.toString,'device_class', Devices[ch].device_class());
-        //        setState(ch.toString,'supported_features', Devices[ch].supported_features());
-        //        setState(ch.toString,'is_opening', Devices[ch].current_cover_position());
-        //        setState(ch.toString,'is_closing', Devices[ch].current_cover_position());
-        //        setState(ch.toString,'is_closed', Devices[ch].current_cover_position());
-        //        setState(ch.toString,'current_cover_position', Devices[ch].current_cover_position());
-        //        setState(ch.toString,'position', Devices[ch].is_closing());
-        //        setState(ch.toString,'tilt_position', Devices[ch].is_closing());
-        //        setState(ch.toString,'state', Devices[ch].is_closing());
-        //        setState(ch.toString,'_command', '');
+        //        this.Devices.forEach(function (dev) {
+        //            this.setState(ch.toString, 'available', dev.available());
+        //            this.setState(ch.toString, 'name', dev.name());
+        //            this.setState(ch.toString, 'device_class', dev.device_class());
+        //            this.setState(ch.toString, 'supported_features', dev.supported_features());
+        //            this.setState(ch.toString, 'is_opening', dev.current_cover_position());
+        //            this.setState(ch.toString, 'is_closing', dev.current_cover_position());
+        //            this.setState(ch.toString, 'is_closed', dev.current_cover_position());
+        //            this.setState(ch.toString, 'current_cover_position', dev.current_cover_position());
+        //            this.setState(ch.toString, 'position', dev.is_closing());
+        //            this.setState(ch.toString, 'tilt_position', dev.is_closing());
+        //            this.setState(ch.toString, 'state', dev.is_closing());
+        //            this.setState(ch.toString, '_command', '');
+        //        });
         //    });
-            
+
         //    //- register to Covers
         //    //#todo: irgendwie muss dann da alles unter einen channel. 
         //    //-connect Covers to states
+
         //}
-        
+            
 
         // in this template all states changes inside the adapters namespace are subscribed
         this.subscribeStates('*');
@@ -103,38 +107,38 @@ class Elero extends utils.Adapter {
         you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
         */
         // the variable testVariable is set to true as command (ack=false)
-        await this.setStateAsync('testVariable', true);
+        //await this.setStateAsync('testVariable', true);
 
         // same thing, but the value is flagged "ack"
         // ack should be always set to true if the value is received from or acknowledged from the target system
-        await this.setStateAsync('testVariable', { val: true, ack: true });
+        //await this.setStateAsync('testVariable', { val: true, ack: true });
 
         // same thing, but the state is deleted after 30s (getState will return null afterwards)
-        await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
+        //await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
 
         // examples for the checkPassword/checkGroup functions
-        let result = await this.checkPasswordAsync('admin', 'iobroker');
-        this.log.info('check user admin pw ioboker: ' + result);
+        //let result = await this.checkPasswordAsync('admin', 'iobroker');
+        //this.log.info('check user admin pw ioboker: ' + result);
 
-        result = await this.checkGroupAsync('admin', 'admin');
-        this.log.info('check group user admin group admin: ' + result);
+        //result = await this.checkGroupAsync('admin', 'admin');
+        //this.log.info('check group user admin group admin: ' + result);
     }
 
-    /**
+    /*
      * Is called when adapter shuts down - callback has to be called under any circumstances!
      * @param {() => void} callback
      */
     onUnload(callback) {
         try {
             this.log.info('cleaned everything up...');
-               ETrans.close_transmitters();
+               this.ETrans.close_transmitters();
             callback();
         } catch (e) {
             callback();
         }
     }
 
-    /**
+    /*
      * Is called if a subscribed object changes
      * @param {string} id
      * @param {ioBroker.Object | null | undefined} obj
@@ -149,7 +153,7 @@ class Elero extends utils.Adapter {
         }
     }
 
-    /**
+    /*
      * Is called if a subscribed state changes
      * @param {string} id
      * @param {ioBroker.State | null | undefined} state
@@ -169,22 +173,22 @@ class Elero extends utils.Adapter {
                     //Kommando ausführen
                     switch (state.val.toString().toLowerCase()) {
                         case "open_cover":
-                            Devices[channel].open_cover();
+                            this.Devices[channel].open_cover();
                             //fast update until opened/stopped?
                             break;
                         case "close_cover":
-                            Devices[channel].close_cover();
+                            this.Devices[channel].close_cover();
                             //fast update until opened/stopped?
                             break;
                         case "stop_cover":
-                            Devices[channel].stop_cover();
+                            this.Devices[channel].stop_cover();
                             //fast update until opened/stopped?
                             break;
                         default:
                             this.log.error("No valid command given: '" + state.val.toString() + "'");
                             break;
                     }
-                    adapter.setState(id, "");
+                    this.setState(id, "");
                     break;
                 default:
                     break;

@@ -55,7 +55,7 @@
 		"enabled": true,
 		"extIcon": "https://raw.githubusercontent.com/seb2010/ioBroker.elero/master/admin/elero.png",
 		"readme": "https://github.com/seb2010/ioBroker.elero/blob/master/README.md",
-		"loglevel": "info",
+		"loglevel": "debug",
 		"mode": "daemon",
 		"type": "hardware",
 		"compact": true,
