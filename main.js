@@ -11,11 +11,8 @@ const adapterName = require('./io-package.json').common.name;
 
 // Load your modules here, e.g.:
 // const fs = require("fs");
-const EleroLib = require(__dirname + '/lib/elero-io.js');
-const CoverLib = require(__dirname + '/lib/cover.js');
-
-let adapter;
-
+const EleroLib = require('./lib/elero-io.js');
+const CoverLib = require('./lib/cover.js');
 
 class Elero extends utils.Adapter {
 
@@ -32,7 +29,7 @@ class Elero extends utils.Adapter {
         this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
-        this.ETrans = {};
+        this.ETrans = null;
         this.ETran = {};
         this.Channels = {};
         this.Devices = {};
@@ -50,9 +47,9 @@ class Elero extends utils.Adapter {
         this.log.info('config option2: ' + this.config.option2);
 
         
-        this.log.info("Creating Transmitters Class");
-
-        this.ETrans = new ETrans(this.config);
+        this.log.debug("Creating Transmitters Class");
+        this.ETrans = new EleroLib.EleroTransmitters(this, this.config);
+        this.log.debug("Discovering Transmitters");
         this.ETrans.discover();
         //this.ETran = this.ETrans.get_first_transmitter();
         //if (!this.ETran.get_transmitter_state()){
