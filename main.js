@@ -11,14 +11,11 @@ const adapterName = require('./io-package.json').common.name;
 
 // Load your modules here, e.g.:
 // const fs = require("fs");
-///const EleroLib = require(__dirname + '/lib/elero-io.js');
-///const CoverLib = require(__dirname + '/lib/cover.js');
+const EleroLib = require(__dirname + '/lib/elero-io.js');
+const CoverLib = require(__dirname + '/lib/cover.js');
 
 let adapter;
-let ETrans;
-let ETran;
-let Channels;
-var Devices = {};
+
 
 class Elero extends utils.Adapter {
 
@@ -35,6 +32,10 @@ class Elero extends utils.Adapter {
         this.on('stateChange', this.onStateChange.bind(this));
         // this.on('message', this.onMessage.bind(this));
         this.on('unload', this.onUnload.bind(this));
+        this.ETrans = {};
+        this.ETran = {};
+        this.Channels = {};
+        this.Devices = {};
     }
 
     /**
@@ -126,7 +127,7 @@ class Elero extends utils.Adapter {
     onUnload(callback) {
         try {
             this.log.info('cleaned everything up...');
-             ETrans.close_transmitters();
+               ETrans.close_transmitters();
             callback();
         } catch (e) {
             callback();
@@ -158,7 +159,7 @@ class Elero extends utils.Adapter {
             // The state was changed
             this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
             
-            if(state.toString().length == 0){break}
+            if (state.val.toString().length == 0) { return }
             
             var statearray = id.split(".");
             var statename = statearray[statearray.length-1];
@@ -166,7 +167,7 @@ class Elero extends utils.Adapter {
             switch(statename){
                 case "_command":
                     //Kommando ausführen
-                    switch(state.toLowerCase()){
+                    switch (state.val.toString().toLowerCase()) {
                         case "open_cover":
                             Devices[channel].open_cover();
                             //fast update until opened/stopped?
@@ -180,11 +181,14 @@ class Elero extends utils.Adapter {
                             //fast update until opened/stopped?
                             break;
                         default:
-                            this.log.error("No valid command given: '"+state+"');
+                            this.log.error("No valid command given: '" + state.val.toString() + "'");
+                            break;
                     }
+                    adapter.setState(id, "");
+                    break;
+                default:
                     break;
             }
-            setState(id,"");
         } else {
             // The state was deleted
             this.log.info(`state ${id} deleted`);
